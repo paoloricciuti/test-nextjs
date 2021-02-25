@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100vh;
 }
 
 a {
@@ -13,4 +14,45 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+#__next{
+  height: 100%;
+}
+
+.layout{
+  display: grid;
+  grid-template-areas: 
+  "appbar appbar"
+  "menu content";
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 10% 90%;
+  height: 100%;
+}
+
+.appbar{
+  grid-area: appbar;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 0 0 1rem 0 rgba(0,0,0,.3);
+  padding: 1rem;
+}
+.menu{
+  grid-area: menu;
+  background-color: white;
+  border-right: 1px solid lightgray;
+  color: lightgray;
+}
+.content{
+  grid-area: content;
+  background-color: white;
+  padding: 1rem;
+}
+.active{
+  color: black;
+  font-weight: bold;
 }
