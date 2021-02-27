@@ -15,6 +15,9 @@ const pages = [
     }, {
         title: "Subroute 2",
         href: "/test/testing-the-slug-2"
+    }, {
+        title: "Server side",
+        href: "/serverside"
     }
 ];
 

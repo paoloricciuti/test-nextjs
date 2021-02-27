@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "node server.js",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "socket.io": "^3.1.2",
+    "socket.io-client": "^3.1.2"
   }
 }
