@@ -1,24 +1,20 @@
-import Layout from '../components/Layout'
-import PageContextProvider from '../contexts/PageContext'
-import '../styles/globals.css'
-import io from 'socket.io-client';
-import { useEffect } from 'react';
+import Layout from '../components/Layout';
+import PageContextProvider from '../contexts/PageContext';
+import RoomContextProvider from '../contexts/RoomContext';
+import SocketContextProvider from '../contexts/SocketContext';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-
-  useEffect(()=>{
-    const socket=io();
-    socket.on("msg", data => {
-      console.log(data);
-    })
-  },[]);
-
   return (
-    <PageContextProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </PageContextProvider>
+    <RoomContextProvider>
+      <SocketContextProvider>
+        <PageContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PageContextProvider>
+      </SocketContextProvider>
+    </RoomContextProvider>
   )
 }
 

@@ -18,6 +18,9 @@ const pages = [
     }, {
         title: "Server side",
         href: "/serverside"
+    }, {
+        title: "Join a room",
+        href: "/joinroom"
     }
 ];
 
