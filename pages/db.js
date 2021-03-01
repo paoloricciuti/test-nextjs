@@ -43,10 +43,10 @@ const db = props => {
 export default db;
 
 export async function getServerSideProps(context) {
-    let res = await fetch("http://localhost:3000/api/testdb");
+    
     return {
         props: {
-            entries: await res.json()
+            entries: [...await context.req.db.get("test-table").find()].map(elem => ({...elem, _id: elem._id.toString()}))
         }
     }
 }
