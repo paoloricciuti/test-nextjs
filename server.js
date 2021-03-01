@@ -12,6 +12,8 @@ const dev = process.env.NODE_ENV != "production";
 
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
+console.log(process.env);
+const db = require('monk')(process.env.MONGO_CONNECTION_STRING);
 
 const sockets = [];
 const rooms = [];
@@ -52,6 +54,11 @@ io.on("connect", socket => {
 
 nextApp.prepare().then(() => {
     app.get("*", (req, res) => {
+        req.db=db;
+        return nextHandler(req, res);
+    })
+    app.post("*", (req, res) => {
+        req.db=db;
         return nextHandler(req, res);
     })
     http.listen(port, () => console.log("Server is running..."));

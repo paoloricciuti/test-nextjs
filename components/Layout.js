@@ -21,6 +21,9 @@ const pages = [
     }, {
         title: "Join a room",
         href: "/joinroom"
+    }, {
+        title: "Test mongo",
+        href: "/db"
     }
 ];
 
