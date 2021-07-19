@@ -13,7 +13,7 @@ const dev = process.env.NODE_ENV != "production";
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
 console.log(process.env);
-const db = require('monk')(process.env.MONGO_CONNECTION_STRING);
+const db = require('./models');
 
 const sockets = [];
 const rooms = [];
@@ -25,7 +25,7 @@ io.on("connect", socket => {
         socket.join(data.room);
         let existing = rooms.find(room => room.room === data.room);
         if (existing) {
-            if(!existing.users.includes(data.username)){
+            if (!existing.users.includes(data.username)) {
                 existing.users.push(data.username);
             }
         } else {
@@ -41,24 +41,24 @@ io.on("connect", socket => {
     });
     socket.on("msg", data => {
         console.log(data);
-        let existing=rooms.find(room => room.room == data.room);
-        if(existing && existing.messages){
+        let existing = rooms.find(room => room.room == data.room);
+        if (existing && existing.messages) {
             existing.messages.push(data);
             io.to(data.room).emit("updateRoom", existing);
         }
     });
-    socket.on("refreshRoom", ({room})=>{
+    socket.on("refreshRoom", ({ room }) => {
         socket.emit("updateRoom", rooms.find(room => room.room === room));
     })
 })
 
 nextApp.prepare().then(() => {
     app.get("*", (req, res) => {
-        req.db=db;
+        req.db = db;
         return nextHandler(req, res);
     })
     app.post("*", (req, res) => {
-        req.db=db;
+        req.db = db;
         return nextHandler(req, res);
     })
     http.listen(port, () => console.log("Server is running..."));

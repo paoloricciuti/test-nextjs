@@ -6,14 +6,17 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "node server.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build && npx sequelize-cli db:migrate"
   },
   "dependencies": {
     "express": "^4.17.1",
     "monk": "^7.3.3",
     "next": "10.0.7",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "sequelize": "^6.6.5",
     "socket.io": "^3.1.2",
     "socket.io-client": "^3.1.2"
   }

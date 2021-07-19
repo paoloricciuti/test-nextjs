@@ -1,9 +1,9 @@
 export default async (req, res) => {
-    const testTable=req.db.get("test-table");
+    const { sequelize } = req.db;
     if (req.method === 'POST') {
-        let inserted=await testTable.insert(JSON.parse(req.body));
+        let inserted = await sequelize.rooms.create(JSON.parse(req.body));
         return res.json(inserted);
     } else {
-        return res.json(await testTable.find());
+        return res.json(await sequelize.rooms.findAll());
     }
 }
