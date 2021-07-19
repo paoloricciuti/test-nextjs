@@ -9,6 +9,7 @@
     "heroku-postbuild": "npm run build && npx sequelize-cli db:migrate"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "monk": "^7.3.3",
     "next": "10.0.7",
