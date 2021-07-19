@@ -12,8 +12,8 @@ const dev = process.env.NODE_ENV != "production";
 
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
-console.log(process.env);
 const db = require('./models');
+console.log(db);
 
 const sockets = [];
 const rooms = [];
